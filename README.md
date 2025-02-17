@@ -1,14 +1,10 @@
-## Analysis
-This is a report illustrating the methodology used in the analysis of 10 genome-wide knockout CRISPR-Cas9 screens. All the findings and results can be found in the `results` subfolder. 
-
-
+## CRISPR - Single guide RNA downstream analysis
+This report describes the methodology used in the analysis of 10 genome-wide knockout CRISPR-Cas9 screens for *Targeting the CDS1/2 axis as a therapeutic strategy in uveal melanoma and pan-cancer*. All the findings and results can be found in the `results` subfolder. 
 
 IMPORTANT: We used the single-guide RNA (sgRNA) guides in common with Human CRISPR Library v1.0 only, as version 1.1 of the same library contains additional guides targeting essential genes with 10 guides per gene. This would result in an unbalanced targeting of these essential genes, therefore we decided to remove them. Nevertheless, the Human CRISPR Library v1.1 has superior chemistry.
 
-
-
 ### CRISPRcleanR
-Single-guide RNA count preprocessing and bias correction
+Single-guide RNA count pre-processing and bias correction
 We performed all computational analyses considering only the sgRNAs in common with the Human CRISPR Library v1.0. 
 
 The initial matrix contained the raw counts of 10 cell lines screened in 3 technical replicates and 1 plasmid. For each cell line, considering the technical replicates and the plasmid, we applied the following pipeline to preprocess and correct the sgRNA counts using CRISPRcleanR v3.0.1:
@@ -62,7 +58,7 @@ In addition, Mel-202 and Mel-285 cell lines were included in the integrated Sang
 Results are summarised in these two scatter plots: Mel-202.pdf (Pearson's R = 0.7915) and Mel-285.pdf (0.7086).
 
 For instance, considering the cell line Mel202, inside the folder you’ll find this structure:
-
+```
 ├── CCR_correction
 │   ├── 1.pdf
 │   ├── 10.pdf
@@ -117,7 +113,7 @@ For instance, considering the cell line Mel202, inside the folder you’ll find 
 │   └── Mel202.sgrna_summary.txt
 ├── sgRNA_PrRc.pdf
 └── sgRNA_ROC.pdf
-
+```
 
 -	CCR_correction is a folder containing one plot per chromosome, with segments of sgRNAs’ equal log fold-change before and after the correction.
 -	Impact_on_phenotype.pdf is a two-page pdf showing:
