@@ -3,9 +3,12 @@ This report describes the methodology used in the analysis of 10 genome-wide kno
 
 IMPORTANT: We used the single-guide RNA (sgRNA) guides in common with Human CRISPR Library v1.0 only, as version 1.1 of the same library contains additional guides targeting essential genes with 10 guides per gene. This would result in an unbalanced targeting of these essential genes, therefore we decided to remove them. Nevertheless, the Human CRISPR Library v1.1 has superior chemistry.
 
+## Data inputs 
+
+Generation of CRIPSR counts (`data/01_raw_count_matrix.tsv`) is detailed [here](https://github.com/team113sanger/uveal_melanoma_single_guide_processing/tree/0f3e0fc3e7fee30edbb40fa03653a334ac13d52c). Core essential genes (CEGs) and non-essential genes (NEGs) were downloaded from the [Hart Lab BAGEL repository](https://github.com/hart-lab/bagel/tree/master/data).
+
 ### CRISPRcleanR
-Single-guide RNA count pre-processing and bias correction
-We performed all computational analyses considering only the sgRNAs in common with the Human CRISPR Library v1.0. 
+Single-guide RNA counts were pre-processed and bias corrected using CRISPRcleanR (3.0.1). We performed all computational analyses considering only the sgRNAs in common with the Human CRISPR Library v1.0. 
 
 The initial matrix contained the raw counts of 10 cell lines screened in 3 technical replicates and 1 plasmid. For each cell line, considering the technical replicates and the plasmid, we applied the following pipeline to preprocess and correct the sgRNA counts using CRISPRcleanR v3.0.1:
 -	sgRNAs with less than 30 read counts in the plasmid were first removed
@@ -25,10 +28,8 @@ We performed several checks to control the quality of the correction in each sam
 
 
 ### Execution of BAGEL
-We run BAGEL2 (https://github.com/hart-lab/bagel) on the corrected sgRNAs logFC profile for each cell line. We used CFEv2 and NEGv1 as reference genes (available in the same repository) and used the default parameters (10-fold cross-validation).
+We run BAGEL2 (https://github.com/hart-lab/bagel, version 2.0) on the corrected sgRNAs logFC profile for each cell line. We used CFEv2 and NEGv1 as reference genes (available in the same repository) and used the default parameters (10-fold cross-validation).
 The resulting gene-level Bayes Factors (BF) were scaled at 5% FDR using the same procedure mentioned in the previous section.
-
-
 
 
 ### Execution of MAGeCK MLE
@@ -143,6 +144,9 @@ For instance, considering the cell line Mel202, inside the folder you’ll find 
 -	sgRNA_ROC.pdf shows the ROC curve at the sgRNA-level logFCs using reference essential and nonessential genes from (https://github.com/hart-lab/bagel) as positive and negative controls.
 
 
+## Dependencies 
+- All R scripts were run using R version 4.2.2 and the packaged dependencies for this project are detailed in the repository `renv.lock` file.
+- Conda environment files for running BAGEL and MAGECK are provided within (`envs`)
 
 ## NOTE
 The summary plot sgRNA_level_recall.pdf shows the recall at 5% FDR from sgRNA logFC profiles. In this plot, the cell line MP46 has a very low score (close to 0). This is due to few guides targeting non-essential genes (negative controls) with strong negative logFCs, which impairs the initial precision before recovering. The situation improves when looking at the gene logFC profiles. Nevertheless, this cell line has the lowest metrics across the quality assessments we performed, implying a poorer separation between core-fitness essential and non-essential genes.
