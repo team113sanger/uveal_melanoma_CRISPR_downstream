@@ -12,7 +12,6 @@ then
 else
         source ~/.zshrc
 fi
-
 conda activate mageckenv
 mkdir -p $cwd
 cd $cwd
