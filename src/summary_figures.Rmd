@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "src/summary_figures.ipynb"
+title: Summary figures
 output: html_document
 ---
 
@@ -8,7 +8,7 @@ sgRNA-level Area Under ROC and Area Under Precision-Recall Curves across cell li
 ```{r}
 library(tidyverse)
 
-sgRNA_level_tot <- read_tsv('../results/sgRNA_level_metrics.tsv', col_types = cols())
+sgRNA_level_tot <- read_tsv('results/sgRNA_level_metrics.tsv', col_types = cols())
 
 ggplot(sgRNA_level_tot, aes(x = cell_line, y = AUC, fill = metric)) +
   geom_bar(stat='identity', position = 'dodge', color = NA) +
@@ -28,7 +28,7 @@ ggplot(sgRNA_level_tot, aes(x = cell_line, y = AUC, fill = metric)) +
 sgRNA-level Recall at 5% False Discovery Rate
 
 ```{r}
-sgRNA_level_ROC_tot <- read_tsv('../results/sgRNA_level_recall.tsv', col_types = cols())
+sgRNA_level_ROC_tot <- read_tsv('results/sgRNA_level_recall.tsv', col_types = cols())
 
 ggplot(sgRNA_level_ROC_tot, aes(x = cell_line, y = Recall)) +
   geom_bar(stat='identity', position = 'dodge', color = NA, fill = 'lightblue') +
@@ -48,7 +48,7 @@ ggplot(sgRNA_level_ROC_tot, aes(x = cell_line, y = Recall)) +
 Gene-level Area Under ROC and Area Under Precision-Recall Curves across cell lines
 
 ```{r}
-gene_level_tot <- read_tsv('../results/gene_level_metrics.tsv', col_types = cols())
+gene_level_tot <- read_tsv('results/gene_level_metrics.tsv', col_types = cols())
 
 ggplot(gene_level_tot, aes(x = cell_line, y = AUC, fill = metric)) +
   geom_bar(stat='identity', position = 'dodge', color = NA) +
@@ -68,7 +68,7 @@ ggplot(gene_level_tot, aes(x = cell_line, y = AUC, fill = metric)) +
 Gene-level Recall at 5% False Discovery Rate
 
 ```{r}
-gene_level_ROC_tot <- read_tsv('../results/gene_level_recall.tsv', col_types = cols())
+gene_level_ROC_tot <- read_tsv('results/gene_level_recall.tsv', col_types = cols())
 
 ggplot(gene_level_ROC_tot, aes(x = cell_line, y = Recall)) +
   geom_bar(stat='identity', position = 'dodge', color = NA, fill = 'lightblue') +
@@ -88,7 +88,7 @@ ggplot(gene_level_ROC_tot, aes(x = cell_line, y = Recall)) +
 Recall at 5% False Discovery Rate across gene signatures
 
 ```{r}
-gene_signatures_tot <- read_tsv('../results/gene_signatures.tsv', col_types = cols())
+gene_signatures_tot <- read_tsv('results/gene_signatures.tsv', col_types = cols())
 
 ggplot(gene_signatures_tot, aes(x = metric, y = Recall, fill = cell_line)) +
   geom_bar(stat='identity', position = 'dodge', color = NA) +

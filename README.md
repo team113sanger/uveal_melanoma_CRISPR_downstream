@@ -3,6 +3,9 @@ This report describes the methodology used in the analysis of 10 genome-wide kno
 
 IMPORTANT: We used the single-guide RNA (sgRNA) guides in common with Human CRISPR Library v1.0 only, as version 1.1 of the same library contains additional guides targeting essential genes with 10 guides per gene. This would result in an unbalanced targeting of these essential genes, therefore we decided to remove them. Nevertheless, the Human CRISPR Library v1.1 has superior chemistry.
 
+
+Users can reproduce the scripts bundled in this package by creating a [Github codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) using the `.devcontainer.json` file that is bundled with these scripts.
+
 ## Data inputs 
 
 Generation of CRIPSR counts (`data/01_raw_count_matrix.tsv`) is detailed [here](https://github.com/team113sanger/uveal_melanoma_single_guide_processing/tree/0f3e0fc3e7fee30edbb40fa03653a334ac13d52c). Core essential genes (CEGs) and non-essential genes (NEGs) were downloaded from the [Hart Lab BAGEL repository](https://github.com/hart-lab/bagel/tree/master/data).
@@ -145,8 +148,9 @@ For instance, considering the cell line Mel202, inside the folder you’ll find 
 
 
 ## Dependencies 
-- All R scripts were run using R version 4.2.2 and the packaged dependencies for this project are detailed in the repository `renv.lock` file.
-- Conda environment files for running BAGEL and MAGECK are provided within (`envs`)
+- All R scripts were run using R version 4.2.3 and the packaged dependencies for this project are detailed in the repository `renv.lock` file.
+- Conda environment files for running BAGEL and MAGECK are provided within (`envs`). These can be re-instantiated within the project devcontainer by running `src/01_setup_conda_envs.sh`
+
 
 ## NOTE
 The summary plot sgRNA_level_recall.pdf shows the recall at 5% FDR from sgRNA logFC profiles. In this plot, the cell line MP46 has a very low score (close to 0). This is due to few guides targeting non-essential genes (negative controls) with strong negative logFCs, which impairs the initial precision before recovering. The situation improves when looking at the gene logFC profiles. Nevertheless, this cell line has the lowest metrics across the quality assessments we performed, implying a poorer separation between core-fitness essential and non-essential genes.
