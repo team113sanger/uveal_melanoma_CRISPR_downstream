@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/934233119.svg)](https://doi.org/10.5281/zenodo.14988612)
 ## CRISPR - Single guide RNA downstream analysis
 This report describes the methodology used in the analysis of 10 genome-wide knockout CRISPR-Cas9 screens for *Targeting the CDS1/2 axis as a therapeutic strategy in uveal melanoma and pan-cancer*. All the findings and results can be found in the `results` subfolder. 
 
